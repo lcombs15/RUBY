@@ -23,7 +23,7 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	# Check for valid number of talk minutes
 	if (numTalkMinutes < 0 || numTalkMinutes > MINS_PER_WEEK)
 		parametersValid = false;
-		puts "Talk minutes n must be: 0 >= n <= #{MINS_PER_WEEK.to_s()}. You entered: '#{numTalkMinutes}'"
+		puts "Talk minutes n must be: 0 >= n <= #{MINS_PER_WEEK}. You entered: '#{numTalkMinutes}'"
 	end;
 
 	# Check for valid plan type
@@ -36,3 +36,12 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	if (!parametersValid)
 		return
 	end;
+
+# Calculate Bill
+	# Setup price break
+	price1, priceBreakPoint, price2 =
+		case planType
+			when 'C' then [0.20, 300, 0.10]
+			when 'R' then [0.10, 120, 0.05]
+			when 'S' then [0.15, MINS_PER_WEEK]
+		end
