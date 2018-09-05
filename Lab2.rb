@@ -10,7 +10,7 @@ DAYS_PER_WEEK = 7
 MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 
 # Get data from user
-	print "Enter the plan type (C-Commerical, R-Residential, S-Student): "
+	print "Enter the plan type (C-Commercial, R-Residential, S-Student): "
 	planType = gets().chomp().upcase()
 
 	print "Enter the number of talk minutes used: "
@@ -28,7 +28,7 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	# Check for valid plan type
 	if (case planType when "C","R","S" then false else true end)
 		parametersValid = false;
-		puts "Valid plan types are: C-Commerical, R-Residential, S-Student. You entered: '#{planType}'."
+		puts "Valid plan types are: C-Commercial, R-Residential, S-Student. You entered: '#{planType}'."
 	end;
 
 	# Exit if parameters are not valid
@@ -40,7 +40,7 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	# Setup price break
 	price1, priceBreakPoint, price2, planTitle =
 		case planType
-			when 'C' then [0.20, 300, 0.10, "Commerical"]
+			when 'C' then [0.20, 300, 0.10, "Commercial"]
 			when 'R' then [0.10, 120, 0.05, "Residential"]
 			when 'S' then [0.15, MINS_PER_WEEK, nil, "Student"]
 		end
