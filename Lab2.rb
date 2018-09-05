@@ -45,3 +45,10 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 			when 'R' then [0.10, 120, 0.05]
 			when 'S' then [0.15, MINS_PER_WEEK]
 		end
+
+	if (numTalkMinutes > priceBreakPoint) then
+		total = priceBreakPoint * price1
+		total += (numTalkMinutes - priceBreakPoint) * price2
+	else
+		total = numTalkMinutes * price1
+	end;
