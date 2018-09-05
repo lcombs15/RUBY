@@ -1,5 +1,4 @@
 #!/usr/bin/ruby
-
 # CIT 383
 # Lab 2
 # Combs, Lucas
@@ -16,9 +15,6 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 
 	print "Enter the number of talk minutes used: "
 	numTalkMinutes = gets().to_i()
-	
-	# Two blank lines
-	puts "\n\n"
 
 # Validate data
 	parametersValid = true # Assume data to be valid
@@ -49,6 +45,7 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 			when 'S' then [0.15, MINS_PER_WEEK, nil, "Student"]
 		end
 
+	# Calculate final total based on needed pricing
 	if (numTalkMinutes > priceBreakPoint) then
 		total = priceBreakPoint * price1
 		total += (numTalkMinutes - priceBreakPoint) * price2
@@ -58,7 +55,7 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 
 # Print bill summary
 	# Print plan type
-	puts "Plan Type: #{planTitle}\n\n"
+	puts "\n\nPlan Type: #{planTitle}\n\n"
 
 	# Print bill header
 	puts "Item\t\tQuantity\t\tPrice"
@@ -67,9 +64,7 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	# Print bill line item	
 	puts "Talk\t\t#{numTalkMinutes}\t\t\t$#{'%.2f' % total}\n\n"
 
-	# Print bill summary
+	# Print bill totals
 	puts "Total:\t\t\t\t\t$#{'%.2f' % total}"
 	puts "Credit:\t\t\t\t\t$25.00"
 	puts "Remaining Credit: $#{'%.2f' % (25 - total)}"
-
-	
