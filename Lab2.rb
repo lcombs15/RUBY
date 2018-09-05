@@ -22,7 +22,7 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	# Check for valid number of talk minutes
 	if (numTalkMinutes < 0 || numTalkMinutes > MINS_PER_WEEK)
 		parametersValid = false;
-		puts "Talk minutes n must be: 0 >= n <= #{MINS_PER_WEEK}. You entered: '#{numTalkMinutes}'"
+		puts "Talk minutes n must be: 0 >= n <= #{MINS_PER_WEEK}. You entered: '#{numTalkMinutes}'."
 	end;
 
 	# Check for valid plan type
