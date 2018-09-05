@@ -16,6 +16,9 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 
 	print "Enter the number of talk minutes used: "
 	numTalkMinutes = gets().to_i()
+	
+	# Two blank lines
+	puts "\n\n"
 
 # Validate data
 	parametersValid = true # Assume data to be valid
@@ -39,11 +42,11 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 
 # Calculate Bill
 	# Setup price break
-	price1, priceBreakPoint, price2 =
+	price1, priceBreakPoint, price2, planTitle =
 		case planType
-			when 'C' then [0.20, 300, 0.10]
-			when 'R' then [0.10, 120, 0.05]
-			when 'S' then [0.15, MINS_PER_WEEK]
+			when 'C' then [0.20, 300, 0.10, "Commerical"]
+			when 'R' then [0.10, 120, 0.05, "Residential"]
+			when 'S' then [0.15, MINS_PER_WEEK, nil, "Student"]
 		end
 
 	if (numTalkMinutes > priceBreakPoint) then
@@ -52,3 +55,21 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	else
 		total = numTalkMinutes * price1
 	end;
+
+# Print bill summary
+	# Print plan type
+	puts "Plan Type: #{planTitle}\n\n"
+
+	# Print bill header
+	puts "Item\t\tQuantity\t\tPrice"
+	puts "-----\t\t----------\t\t-----"
+
+	# Print bill line item	
+	puts "Talk\t\t#{numTalkMinutes}\t\t\t$#{'%.2f' % total}\n\n"
+
+	# Print bill summary
+	puts "Total:\t\t\t\t\t$#{'%.2f' % total}"
+	puts "Credit:\t\t\t\t\t$25.00"
+	puts "Remaining Credit: $#{'%.2f' % (25 - total)}"
+
+	
