@@ -67,4 +67,4 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	# Print bill totals
 	puts "Total:\t\t\t\t\t$#{'%.2f' % total}"
 	puts "Credit:\t\t\t\t\t$25.00"
-	puts "Remaining Credit: $#{'%.2f' % (25 - total)}"
+	puts "#{total > 25 ? "Amount Due" : "Remaining Credit"}: $#{'%.2f' % (25 - total).abs}"
