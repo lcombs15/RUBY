@@ -1,5 +1,4 @@
 #!/usr/bin/ruby
-
 # CIT 383
 # Lab 2
 # Combs, Lucas
@@ -11,7 +10,7 @@ DAYS_PER_WEEK = 7
 MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 
 # Get data from user
-	print "Enter the plan type (C-Commerical, R-Residential, S-Student): "
+	print "Enter the plan type (C-Commercial, R-Residential, S-Student): "
 	planType = gets().chomp().upcase()
 
 	print "Enter the number of talk minutes used: "
@@ -23,13 +22,13 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 	# Check for valid number of talk minutes
 	if (numTalkMinutes < 0 || numTalkMinutes > MINS_PER_WEEK)
 		parametersValid = false;
-		puts "Talk minutes n must be: 0 >= n <= #{MINS_PER_WEEK}. You entered: '#{numTalkMinutes}'"
+		puts "Talk minutes n must be: 0 >= n <= #{MINS_PER_WEEK}. You entered: '#{numTalkMinutes}'."
 	end;
 
 	# Check for valid plan type
 	if (case planType when "C","R","S" then false else true end)
 		parametersValid = false;
-		puts "Valid plan types are: C-Commerical, R-Residential, S-Student. You entered: '#{planType}'."
+		puts "Valid plan types are: C-Commercial, R-Residential, S-Student. You entered: '#{planType}'."
 	end;
 
 	# Exit if parameters are not valid
@@ -39,9 +38,33 @@ MINS_PER_WEEK = MINS_PER_HOUR * HOURS_PER_DAY * DAYS_PER_WEEK
 
 # Calculate Bill
 	# Setup price break
-	price1, priceBreakPoint, price2 =
+	price1, priceBreakPoint, price2, planTitle =
 		case planType
-			when 'C' then [0.20, 300, 0.10]
-			when 'R' then [0.10, 120, 0.05]
-			when 'S' then [0.15, MINS_PER_WEEK]
+			when 'C' then [0.20, 300, 0.10, "Commercial"]
+			when 'R' then [0.10, 120, 0.05, "Residential"]
+			when 'S' then [0.15, MINS_PER_WEEK, nil, "Student"]
 		end
+
+	# Calculate final total based on needed pricing
+	if (numTalkMinutes > priceBreakPoint) then
+		total = priceBreakPoint * price1
+		total += (numTalkMinutes - priceBreakPoint) * price2
+	else
+		total = numTalkMinutes * price1
+	end;
+
+# Print bill summary
+	# Print plan type
+	puts "\n\nPlan Type: #{planTitle}\n\n"
+
+	# Print bill header
+	puts "Item\t\tQuantity\t\tPrice"
+	puts "-----\t\t----------\t\t-----"
+
+	# Print bill line item	
+	puts "Talk\t\t#{numTalkMinutes}\t\t\t$#{'%.2f' % total}\n\n"
+
+	# Print bill totals
+	puts "Total:\t\t\t\t\t$#{'%.2f' % total}"
+	puts "Credit:\t\t\t\t\t$25.00"
+	puts "#{total > 25 ? "Amount Due" : "Remaining Credit"}: $#{'%.2f' % (25 - total).abs}"
