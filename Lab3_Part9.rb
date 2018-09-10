@@ -16,7 +16,14 @@ end;
 # Print header
 puts "n\tn^2\tn^3\tn^4"
 
+# Loop over each integer in range
 for n in 1...value+1 do
-	puts "#{n}\t#{n**2}\t#{n**3}\t#{n**4}"
+	# Loop over possible exponenets
+	for power in 1...5 do
+		print "#{n**power}\t"
+	end;
+	
+	# Print new line
+	puts
 end;
 
