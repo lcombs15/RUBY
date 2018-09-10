@@ -4,9 +4,7 @@
 # Combs, Lucas
 
 # Initialize Variables
-sum = 0
-count = 0
-odd = 0
+sum, count, odd = 0, 0, 0
 
 # Prompt user for input
 print("Enter an integer value (0 to quit): ")
@@ -28,5 +26,12 @@ while (value != 0) do
 end
 
 # Display Summary
-puts("# of values: #{count}")
 puts("The sum of the entered values is: #{sum}")
+puts("# of values: #{count}")
+
+# Avoid division by zero
+if (count > 0) then
+	puts "Average input: #{format("%0.2f" % (sum / count))}"
+end;
+
+puts("# of odd values: #{odd}")
