@@ -12,7 +12,7 @@ puts "Welcome to Cash Register $$$"
 		"(3) Apply Discount\n"\
 		"(4) Apply Gift Card\n"\
 		"(5) Total\n"\
-		"(9) New Trnasaction\n"\
+		"(9) New Transaction\n"\
 		"(0) Exit Application\n"\
 		"  Selection: "
 	# Get input from user
