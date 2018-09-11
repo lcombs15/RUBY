@@ -27,9 +27,17 @@ def transactionMenuPrompt()
 	return gets().to_i()
 end
 
+def getTotal()
+	
+end
+
 init();
 
 while ((input = transactionMenuPrompt()) != 0) do
-	
+	if (input == 9) then
+		init()
+	elsif (input == 5) then
+		puts format("Total: $%0.2f" % getTotal())
+	end;
 end
 
