@@ -19,7 +19,7 @@ puts "Welcome to Cash Register $$$"
 	return gets().to_i()
 end
 
-while !((input = transactionMenuPrompt()) == 0) do
+while ((input = transactionMenuPrompt()) != 0) do
 	puts "Got: #{input}"
 end
 
