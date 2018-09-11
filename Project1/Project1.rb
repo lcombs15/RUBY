@@ -5,7 +5,15 @@
 
 puts "Welcome to Cash Register $$$"
 
- def transactionMenuPrompt()
+def init()
+	chargeCount = 0
+	giftCardCount = 0
+	discountPercentage = 0
+	totalPrice = 0
+	grandTotal = 0
+end
+
+def transactionMenuPrompt()
 	# Prompt user for input
  	print "(1) Add Item Charge\n"\
 		"(2) Add Labor Charge\n"\
@@ -19,7 +27,9 @@ puts "Welcome to Cash Register $$$"
 	return gets().to_i()
 end
 
+init();
+
 while ((input = transactionMenuPrompt()) != 0) do
-	puts "Got: #{input}"
+	
 end
 
