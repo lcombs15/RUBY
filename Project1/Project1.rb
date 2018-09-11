@@ -5,7 +5,9 @@
 
 puts "Welcome to Cash Register $$$"
 
-menu = 	"(1) Add Item Charge\n"\
+ def transactionMenuPrompt()
+	# Prompt user for input
+ 	print "(1) Add Item Charge\n"\
 		"(2) Add Labor Charge\n"\
 		"(3) Apply Discount\n"\
 		"(4) Apply Gift Card\n"\
@@ -13,13 +15,11 @@ menu = 	"(1) Add Item Charge\n"\
 		"(9) New Trnasaction\n"\
 		"(0) Exit Application\n"\
 		"  Selection: "
+	# Get input from user
+	return gets().to_i()
+end
 
-# Prompt user for input
-print menu
-input = gets().to_i()
-
-while !(input == 0) do
-	print menu
-	input = gets().to_i()
+while !((input = transactionMenuPrompt()) == 0) do
+	puts "Got: #{input}"
 end
 
