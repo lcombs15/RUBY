@@ -31,7 +31,7 @@ puts("# of values: #{count}")
 
 # Avoid division by zero
 if (count > 0) then
-	puts "Average input: #{format("%0.2f" % (sum / count))}"
+	puts "Average input: #{format("%0.2f" % (sum / count.to_f()))}"
 end;
 
 puts("# of odd values: #{odd}")
