@@ -38,8 +38,20 @@ def transactionMenuPrompt()
 	return selection.to_i()
 end
 
-def getTotal()
-	return $totalPrice
+def printTotal()
+	puts	"Decription\tQuantity\tAmount\n"\
+			"----------\t--------\t------\n"\
+			"Items\t\t#{$numCharges}\t\t$#{$totalPrice}\n"\
+			"Discount\t#{$discountPercentage}%\t\t$Whatever\n"\
+			"Tax\t\t6.5%\t\t$7.77\n"\
+			"Labor\t\t(0,1)\t\t$#{$labor}\n"\
+			"Grand Total:\t\t\t$#{$totalPrice}\n\n"
+			
+			if (($totalPrice - $giftCardAmount) > 0) then
+				puts "Please Pay Amount: $#{$totalPrice - $giftCardAmount}"
+			else
+				puts "Remaining balance: $#{($totalPrice - $giftCardAmount).abs}"
+			end;
 end
 
 init();
@@ -48,7 +60,7 @@ while ((input = transactionMenuPrompt()) != 0) do
 	if (input == 9) then
 		init()
 	elsif (input == 5) then
-		puts format("Total: $%0.2f" % getTotal())
+		printTotal()
 	else
 		# Every other menu option requires a number input
 		print "\nAmount: "
