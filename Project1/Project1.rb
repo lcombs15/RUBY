@@ -10,23 +10,23 @@ APP_NAME = "Cash Register $$$"
 # Initialize/reset all global variable
 def init()
 	$numCharges = 0
-	$giftCardCount = 0
+	$numGiftCards = 0
 	$giftCardAmount = 0
 	$discountPercentage = 0
-	$totalPrice = 0
+	$total = 0
 	$labor = 0
 end
 
 # Print menu options and return users selection
 def transactionMenuPrompt()
 	# Prompt user for input
- 	print "(1) Add Item Charge\n"\
-		"(2) Add Labor Charge\n"\
-		"(3) Apply Discount\n"\
-		"(4) Apply Gift Card\n"\
-		"(5) Total\n"\
-		"(9) New Transaction\n"\
-		"(0) Exit Application\n"
+ 	print 	"(1) Add Item Charge\n"\
+			"(2) Add Labor Charge\n"\
+			"(3) Apply Discount\n"\
+			"(4) Apply Gift Card\n"\
+			"(5) Total\n"\
+			"(9) New Transaction\n"\
+			"(0) Exit Application\n"
 		
 	# Get single character input from user
 	selection = ""
@@ -49,26 +49,23 @@ end
 
 # Print formatted transaction total
 def printTotal()
-	discount = ($totalPrice * ($discountPercentage / 100.0)).round(2)
-	tax = (TAX_PERCENTAGE * ($totalPrice - discount)).round(2)
-	grandTotal = ($labor + $totalPrice + tax - discount).round(2)
+	discount = ($total * ($discountPercentage / 100.0)).round(2)
+	tax = (TAX_PERCENTAGE * ($total - discount)).round(2)
+	grandTotal = ($labor + $total + tax - discount).round(2)
 	balance = (grandTotal - $giftCardAmount).abs().round(2)
 	
 	puts	"Receipt\n"\
 			"Decription\tQuantity\tAmount\n"\
 			"----------\t--------\t------\n"\
-			"Items\t\t#{$numCharges}\t\t$#{format("%.2f" % $totalPrice)}\n"\
+			"Items\t\t#{$numCharges}\t\t$#{format("%.2f" % $total)}\n"\
 			"Discount\t#{$discountPercentage}%\t\t-$#{format("%.2f" % discount)}\n"\
 			"Tax\t\t6.5%\t\t$#{format("%.2f" % tax)}\n"\
 			"Labor\t\t#{$labor == 0 ? 0 : 1}\t\t$#{format("%.2f" % $labor)}\n"\
 			"Grand Total:\t\t\t$#{format("%.2f" % grandTotal)}\n\n"\
-			"Gift Cards\t#{$giftCardCount}\t\t-$#{format("%.2f" % $giftCardAmount)}\n\n\n"
+			"Gift Cards\t#{$numGiftCards}\t\t-$#{format("%.2f" % $giftCardAmount)}\n\n\n"
 			
-			if ((grandTotal - $giftCardAmount) > 0) then
-				puts "Please Pay Amount:\t\t$#{format("%.2f" % balance)}"
-			else
-				puts "Remaining balance:\t\t$#{format("%.2f" % balance)}"
-			end;
+			print ((grandTotal - $giftCardAmount) > 0)? "Please Pay Amount:" : "Remaining balance:"			
+			print "\t\t$#{format("%.2f" % balance)}\n\n"
 end
 
 # Intialize all variables
@@ -96,7 +93,7 @@ while ((input = transactionMenuPrompt()) != 0) do
 			puts "Invalid input. Must be > 0."
 		elsif (input == 4) then
 			# Accept gift card
-			$giftCardCount += 1
+			$numGiftCards += 1
 			$giftCardAmount += keyedAmount
 		elsif (input == 3) then
 			# Discount must be whole number
@@ -122,7 +119,7 @@ while ((input = transactionMenuPrompt()) != 0) do
 				end;
 		elsif (input == 1) then
 			# Add item charge
-			$totalPrice += keyedAmount
+			$total += keyedAmount
 			$numCharges += 1
 		end;
 	end;
