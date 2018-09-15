@@ -62,12 +62,12 @@ def printTotal()
 			"Tax\t\t6.5%\t\t$#{tax}\n"\
 			"Labor\t\t#{$labor == 0 ? 0 : 1}\t\t$#{$labor}\n"\
 			"Grand Total:\t\t\t$#{grandTotal}\n\n"\
-			"Gift Cards\t#{$giftCardCount}\t\t$#{$giftCardAmount * -1}\n"
+			"Gift Cards\t#{$giftCardCount}\t\t$#{$giftCardAmount * -1}\n\n\n"
 			
 			if ((grandTotal - $giftCardAmount) > 0) then
-				puts "Please Pay Amount: $#{grandTotal - $giftCardAmount}"
+				puts "Please Pay Amount:\t$#{grandTotal - $giftCardAmount}"
 			else
-				puts "Remaining balance: $#{(grandTotal - $giftCardAmount).abs}"
+				puts "Remaining balance:\t$#{(grandTotal - $giftCardAmount).abs}"
 			end;
 end
 
