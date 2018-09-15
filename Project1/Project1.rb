@@ -43,7 +43,7 @@ while ((input = transactionMenuPrompt()) != 0) do
 		# Every other menu option requires a number input
 		print "\nAmount: "
 		keyedAmount = gets().to_f()
-		if (keyedAmount < 0) then
+		if (keyedAmount <= 0) then
 			puts "Invalid input. Must be > 0."
 		elsif (input == 4) then
 			# Handle gift card
