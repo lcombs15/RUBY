@@ -83,5 +83,7 @@ while ((input = transactionMenuPrompt()) != 0) do
 			$numCharges += 1
 		end;
 	end;
+	# New line after entry
+	puts
 end
 
