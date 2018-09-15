@@ -101,7 +101,7 @@ while ((input = transactionMenuPrompt()) != 0) do
 			else
 				# Apply discount if one hasn't already applied
 				if ($discountPercentage != 0)
-					puts "Discount has already been set: #{discount}%"
+					puts "Discount has already been set: #{$discountPercentage}%"
 				else
 					$discountPercentage = keyedAmount.to_i()
 				end;
