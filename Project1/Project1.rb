@@ -5,6 +5,7 @@
 
 puts "Welcome to Cash Register $$$"
 
+# Initialize/reset all global variable
 def init()
 	$numCharges = 0
 	$giftCardCount = 0
@@ -15,6 +16,7 @@ def init()
 	$labor = 0
 end
 
+# Print menu options and return users selection
 def transactionMenuPrompt()
 	# Prompt user for input
  	print "(1) Add Item Charge\n"\
@@ -38,6 +40,7 @@ def transactionMenuPrompt()
 	return selection.to_i()
 end
 
+# Print formatted transaction total
 def printTotal()
 	puts	"Decription\tQuantity\tAmount\n"\
 			"----------\t--------\t------\n"\
@@ -54,28 +57,35 @@ def printTotal()
 			end;
 end
 
+# Intialize all variables
 init();
 
+# Loop until user enters 0 to exit
 while ((input = transactionMenuPrompt()) != 0) do
 	if (input == 9) then
+		# Reset all variables for next transaction
 		init()
 	elsif (input == 5) then
 		printTotal()
 	else
-		# Every other menu option requires a number input
+		# The remaining menu options require a number from user
+		
+		# Get user input
 		print "\nAmount: "
 		keyedAmount = gets().to_f()
+		
 		if (keyedAmount <= 0) then
 			puts "Invalid input. Must be > 0."
 		elsif (input == 4) then
-			# Handle gift card
+			# Accept gift card
 			$giftCardCount += 1
 			$giftCardAmount += keyedAmount
 		elsif (input == 3) then
+			# Validate discount
 			if(keyedAmount > 15 || keyedAmount % 5 != 0) then
 				puts "Invalid discount: #{keyedAmount}%. Must be 5, 10, or 15."
 			else
-				# Apply discount if one hasn't already been given
+				# Apply discount if one hasn't already applied
 				if ($discountPercentage != 0)
 					puts "Discount has already been set: #{discount}%"
 				else
