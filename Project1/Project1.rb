@@ -49,9 +49,9 @@ end
 
 # Print formatted transaction total
 def printTotal()
-	discount = $totalPrice * ($discountPercentage / 100.0)
-	tax = TAX_PERCENTAGE * ($totalPrice - discount)
-	grandTotal = $labor + $totalPrice + tax - discount
+	discount = ($totalPrice * ($discountPercentage / 100.0)).round(2)
+	tax = (TAX_PERCENTAGE * ($totalPrice - discount)).round(2)
+	grandTotal = ($labor + $totalPrice + tax - discount).round(2)
 	
 	puts	"Receipt\n"\
 			"Decription\tQuantity\tAmount\n"\
@@ -98,6 +98,9 @@ while ((input = transactionMenuPrompt()) != 0) do
 			$giftCardCount += 1
 			$giftCardAmount += keyedAmount
 		elsif (input == 3) then
+			# Discount must be whole number
+			keyedAmount = keyedAmount.to_i()			
+			
 			# Validate discount
 			if(keyedAmount > 15 || keyedAmount % 5 != 0) then
 				puts "Invalid discount: #{keyedAmount}%. Must be 5, 10, or 15."
