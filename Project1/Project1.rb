@@ -3,10 +3,9 @@
 # Project 1
 # Combs, Lucas
 
-puts "Welcome to Cash Register $$$"
-
 # Constants
 TAX_PERCENTAGE = 0.065
+APP_NAME = "Cash Register $$$"
 
 # Initialize/reset all global variable
 def init()
@@ -65,14 +64,16 @@ def printTotal()
 			"Gift Cards\t#{$giftCardCount}\t\t$#{$giftCardAmount * -1}\n\n\n"
 			
 			if ((grandTotal - $giftCardAmount) > 0) then
-				puts "Please Pay Amount:\t$#{grandTotal - $giftCardAmount}"
+				puts "Please Pay Amount:\t\t$#{grandTotal - $giftCardAmount}"
 			else
-				puts "Remaining balance:\t$#{(grandTotal - $giftCardAmount).abs}"
+				puts "Remaining balance:\t\t$#{(grandTotal - $giftCardAmount).abs}"
 			end;
 end
 
 # Intialize all variables
 init();
+
+puts "Welcome to #{APP_NAME}"
 
 # Loop until user enters 0 to exit
 while ((input = transactionMenuPrompt()) != 0) do
@@ -126,4 +127,4 @@ while ((input = transactionMenuPrompt()) != 0) do
 end
 
 # Exit message
-print "Thank you for using Cash Register $$$"
+print "Thank you for using #{APP_NAME}"
