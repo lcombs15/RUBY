@@ -57,7 +57,7 @@ def printTotal()
 			"Decription\tQuantity\tAmount\n"\
 			"----------\t--------\t------\n"\
 			"Items\t\t#{$numCharges}\t\t$#{$totalPrice}\n"\
-			"Discount\t#{$discountPercentage}%\t\t$#{discount}\n"\
+			"Discount\t#{$discountPercentage}%\t\t$#{discount * -1}\n"\
 			"Tax\t\t6.5%\t\t$#{tax}\n"\
 			"Labor\t\t#{$labor == 0 ? 0 : 1}\t\t$#{$labor}\n"\
 			"Grand Total:\t\t\t$#{grandTotal}\n\n"\
