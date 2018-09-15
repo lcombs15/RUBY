@@ -22,10 +22,19 @@ def transactionMenuPrompt()
 		"(4) Apply Gift Card\n"\
 		"(5) Total\n"\
 		"(9) New Transaction\n"\
-		"(0) Exit Application\n"\
-		"  Selection: "
-	# Get input from user
-	return gets().to_i()
+		"(0) Exit Application\n"
+		
+	# Get single character input from user
+	selection = ""
+	loop do
+		print "  Selection: "
+		selection = gets().chomp()
+		if (selection.length == 1)
+			break
+		end;
+	end;
+	
+	return selection.to_i()
 end
 
 def getTotal()
