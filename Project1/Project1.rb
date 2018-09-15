@@ -54,7 +54,8 @@ def printTotal()
 	tax = TAX_PERCENTAGE * ($totalPrice - discount)
 	grandTotal = $labor + $totalPrice + tax - discount
 	
-	puts	"Decription\tQuantity\tAmount\n"\
+	puts	"Receipt\n"\
+			"Decription\tQuantity\tAmount\n"\
 			"----------\t--------\t------\n"\
 			"Items\t\t#{$numCharges}\t\t$#{$totalPrice}\n"\
 			"Discount\t#{$discountPercentage}%\t\t$#{discount}\n"\
