@@ -5,6 +5,9 @@
 
 puts "Welcome to Cash Register $$$"
 
+# Constants
+TAX_PERCENTAGE = 0.065
+
 # Initialize/reset all global variable
 def init()
 	$numCharges = 0
@@ -12,7 +15,6 @@ def init()
 	$giftCardAmount = 0
 	$discountPercentage = 0
 	$totalPrice = 0
-	$grandTotal = 0
 	$labor = 0
 end
 
@@ -37,23 +39,34 @@ def transactionMenuPrompt()
 		end;
 	end;
 	
+	selection = selection.to_i()
+	if (selection > 9 || (selection > 5 && selection < 9)) then
+		puts "Invalid menu option."
+		return transactionMenuPrompt()
+	end;
+	
 	return selection.to_i()
 end
 
 # Print formatted transaction total
 def printTotal()
+	discount = $totalPrice * ($discountPercentage / 100.0)
+	tax = TAX_PERCENTAGE * ($totalPrice - discount)
+	grandTotal = $labor + $totalPrice + tax - discount
+	
 	puts	"Decription\tQuantity\tAmount\n"\
 			"----------\t--------\t------\n"\
 			"Items\t\t#{$numCharges}\t\t$#{$totalPrice}\n"\
-			"Discount\t#{$discountPercentage}%\t\t$Whatever\n"\
-			"Tax\t\t6.5%\t\t$7.77\n"\
-			"Labor\t\t(0,1)\t\t$#{$labor}\n"\
-			"Grand Total:\t\t\t$#{$totalPrice}\n\n"
+			"Discount\t#{$discountPercentage}%\t\t$#{discount}\n"\
+			"Tax\t\t6.5%\t\t$#{tax}\n"\
+			"Labor\t\t#{$labor == 0 ? 0 : 1}\t\t$#{$labor}\n"\
+			"Grand Total:\t\t\t$#{grandTotal}\n\n"\
+			"Gift Cards\t#{$giftCardCount}\t\t$#{$giftCardAmount * -1}\n"
 			
-			if (($totalPrice - $giftCardAmount) > 0) then
-				puts "Please Pay Amount: $#{$totalPrice - $giftCardAmount}"
+			if ((grandTotal - $giftCardAmount) > 0) then
+				puts "Please Pay Amount: $#{grandTotal - $giftCardAmount}"
 			else
-				puts "Remaining balance: $#{($totalPrice - $giftCardAmount).abs}"
+				puts "Remaining balance: $#{(grandTotal - $giftCardAmount).abs}"
 			end;
 end
 
