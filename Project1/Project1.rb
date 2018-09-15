@@ -77,6 +77,8 @@ init();
 # Loop until user enters 0 to exit
 while ((input = transactionMenuPrompt()) != 0) do
 	if (input == 9) then
+		puts "Creating a new transaction"
+		
 		# Reset all variables for next transaction
 		init()
 	elsif (input == 5) then
@@ -123,3 +125,5 @@ while ((input = transactionMenuPrompt()) != 0) do
 	puts
 end
 
+# Exit message
+print "Thank you for using Cash Register $$$"
