@@ -52,21 +52,22 @@ def printTotal()
 	discount = ($totalPrice * ($discountPercentage / 100.0)).round(2)
 	tax = (TAX_PERCENTAGE * ($totalPrice - discount)).round(2)
 	grandTotal = ($labor + $totalPrice + tax - discount).round(2)
+	balance = (grandTotal - $giftCardAmount).abs().round(2)
 	
 	puts	"Receipt\n"\
 			"Decription\tQuantity\tAmount\n"\
 			"----------\t--------\t------\n"\
 			"Items\t\t#{$numCharges}\t\t$#{$totalPrice}\n"\
-			"Discount\t#{$discountPercentage}%\t\t$#{discount * -1}\n"\
+			"Discount\t#{$discountPercentage}%\t\t-$#{discount}\n"\
 			"Tax\t\t6.5%\t\t$#{tax}\n"\
 			"Labor\t\t#{$labor == 0 ? 0 : 1}\t\t$#{$labor}\n"\
 			"Grand Total:\t\t\t$#{grandTotal}\n\n"\
-			"Gift Cards\t#{$giftCardCount}\t\t$#{$giftCardAmount * -1}\n\n\n"
+			"Gift Cards\t#{$giftCardCount}\t\t$#{-$giftCardAmount}\n\n\n"
 			
 			if ((grandTotal - $giftCardAmount) > 0) then
-				puts "Please Pay Amount:\t\t$#{grandTotal - $giftCardAmount}"
+				puts "Please Pay Amount:\t\t$#{balance}"
 			else
-				puts "Remaining balance:\t\t$#{(grandTotal - $giftCardAmount).abs}"
+				puts "Remaining balance:\t\t$#{balance}"
 			end;
 end
 
