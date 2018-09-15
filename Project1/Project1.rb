@@ -57,17 +57,17 @@ def printTotal()
 	puts	"Receipt\n"\
 			"Decription\tQuantity\tAmount\n"\
 			"----------\t--------\t------\n"\
-			"Items\t\t#{$numCharges}\t\t$#{$totalPrice}\n"\
-			"Discount\t#{$discountPercentage}%\t\t-$#{discount}\n"\
-			"Tax\t\t6.5%\t\t$#{tax}\n"\
-			"Labor\t\t#{$labor == 0 ? 0 : 1}\t\t$#{$labor}\n"\
-			"Grand Total:\t\t\t$#{grandTotal}\n\n"\
-			"Gift Cards\t#{$giftCardCount}\t\t$#{-$giftCardAmount}\n\n\n"
+			"Items\t\t#{$numCharges}\t\t$#{format("%.2f" % $totalPrice)}\n"\
+			"Discount\t#{$discountPercentage}%\t\t-$#{format("%.2f" % discount)}\n"\
+			"Tax\t\t6.5%\t\t$#{format("%.2f" % tax)}\n"\
+			"Labor\t\t#{$labor == 0 ? 0 : 1}\t\t$#{format("%.2f" % $labor)}\n"\
+			"Grand Total:\t\t\t$#{format("%.2f" % grandTotal)}\n\n"\
+			"Gift Cards\t#{$giftCardCount}\t\t-$#{format("%.2f" % $giftCardAmount)}\n\n\n"
 			
 			if ((grandTotal - $giftCardAmount) > 0) then
-				puts "Please Pay Amount:\t\t$#{balance}"
+				puts "Please Pay Amount:\t\t$#{format("%.2f" % balance)}"
 			else
-				puts "Remaining balance:\t\t$#{balance}"
+				puts "Remaining balance:\t\t$#{format("%.2f" % balance)}"
 			end;
 end
 
