@@ -12,6 +12,7 @@ def init()
 	$discountPercentage = 0
 	$totalPrice = 0
 	$grandTotal = 0
+	$labor = 0
 end
 
 def transactionMenuPrompt()
@@ -72,7 +73,7 @@ while ((input = transactionMenuPrompt()) != 0) do
 		elsif (input == 2) then
 			# Add labor charge if one doesn't exisit
 				if ($labor != 0)
-					puts "Labor had already been charged: $#{labor}"
+					puts "Labor had already been charged: $#{$labor}"
 				else
 					$labor = keyedAmount
 				end;
@@ -81,7 +82,6 @@ while ((input = transactionMenuPrompt()) != 0) do
 			$totalPrice += keyedAmount
 			$numCharges += 1
 		end;
-		
 	end;
 end
 
