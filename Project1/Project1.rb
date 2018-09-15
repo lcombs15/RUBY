@@ -41,7 +41,7 @@ def transactionMenuPrompt()
 	
 	selection = selection.to_i()
 	if (selection > 9 || (selection > 5 && selection < 9)) then
-		puts "Invalid menu option."
+		puts "Invalid menu option.\n"
 		return transactionMenuPrompt()
 	end;
 	
