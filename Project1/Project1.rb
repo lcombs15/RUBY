@@ -55,7 +55,7 @@ def printTotal()
 	balance = (grandTotal - $giftCardAmount).abs().round(2)
 	
 	puts	"Receipt\n"\
-			"Decription\tQuantity\tAmount\n"\
+			"Description\tQuantity\tAmount\n"\
 			"----------\t--------\t------\n"\
 			"Items\t\t#{$numCharges}\t\t$#{format("%.2f" % $total)}\n"\
 			"Discount\t#{$discountPercentage}%\t\t-$#{format("%.2f" % discount)}\n"\
@@ -68,7 +68,7 @@ def printTotal()
 			print "\t\t$#{format("%.2f" % balance)}\n\n"
 end
 
-# Intialize all variables
+# Initialize all variables
 init();
 
 puts "Welcome to #{APP_NAME}"
