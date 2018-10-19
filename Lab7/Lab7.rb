@@ -1,47 +1,77 @@
 #!/usr/bin/ruby
 # CIT 383
-# Lab 4
+# Lab 7 (Lab 4 revision)
 # Combs, Lucas
 
-# determine number of datum
-datumCount = 0
-while (datumCount <= 0) do
-	print "Enter total set of numbers > 0: "
-	datumCount = gets().to_i()
-end;
+def populateArray(arraySize)
+	# Init data array with zeros
+	retVal  = Array.new(arraySize, 0)
 
-# Init data array with zeros
-data  = Array.new(datumCount, 0)
-
-grandTotal = 0
-
-# Populate data array with user input
-for datum in 0..data.length()-1 do
-	print "Enter datum #{datum+1} of #{datumCount}: "
-	data[datum] = gets.to_i()
-	grandTotal += data[datum]
-end; 
-
-# Print report header
-puts 	"Line #\tValue\tRunning Sum\n"\
-		"-----\t------\t------------"	
-
-# Print report lines and make calculations
-runningSum = 0
-stdDev = 0
-average = grandTotal / datumCount.to_f()
-line = 0
-data.each do |item|
-	runningSum += item
-	stdDev += (item - average)**2
-	line += 1
-	puts "#{line}\t#{item}\t#{runningSum}"
+	# Populate data array with user input
+	for datum in 0..retVal.length()-1 do
+		print "Enter datum #{datum+1} of #{arraySize}: "
+		retVal[datum] = gets.to_i()
+	end; 
+	
+	return retVal
 end
 
-puts "\nTotal Numer of Items: #{datumCount}"
-puts "Grand Total: #{grandTotal}"
+def calcTotal(numArray)
+	retVal = 0
+	for num in numArray do
+		retVal += num
+	end
+	return retVal
+end
 
-puts "\nAverage: #{average}"
+def calcAvg(numArray)
+	return calcTotal(numArray) / numArray.length().to_f()
+end
 
-stdDev =  Math.sqrt(stdDev / (data.length()-1))
-print "\nStandard Deviation: #{stdDev}"
+def calcStandardDeviation(numArray)
+	if numArray.length() == 0 then
+		return 0
+	end
+	runningSum = 0
+	stdDev = 0
+	average = calcTotal(numArray) / numArray.length().to_f()
+	numArray.each do |item|
+		runningSum += item
+		stdDev += (item - average)**2
+	end
+	
+	return Math.sqrt(stdDev / (numArray.length()-1))
+end
+
+def displayResults(numArray, total, avg, stdDev)
+	# Print report header
+	puts 	"Line #\tValue\tRunning Sum\n"\
+			"-----\t------\t------------"	
+
+	# Print report lines and make calculations
+	runningSum = 0
+	for i in 0...numArray.length
+		item = numArray[i]
+		runningSum += item
+		puts "#{i + 1}\t#{item}\t#{runningSum}"
+	end
+
+	puts "\nTotal Number of Items: #{numArray.count}"
+	puts "Grand Total: #{calcTotal(numArray)}"
+	puts "\nAverage: #{calcAvg(numArray).round(2)}"
+	print "\nStandard Deviation: #{calcStandardDeviation(numArray).round(4)}"
+end
+
+# determine number of datum
+	print "Enter total set of numbers > 0: "
+	datumCount = gets().to_i()
+	if datumCount > 0 then
+		data = populateArray(datumCount)
+	
+		displayResults(data, 
+			calcTotal(data),
+			calcAvg(data),
+			calcStandardDeviation(data))
+	else
+		puts "Array size cannot be less than 0. You entered: #{datumCount}"
+	end
