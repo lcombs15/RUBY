@@ -32,11 +32,9 @@ def calcStandardDeviation(numArray)
 	if numArray.length() == 0 then
 		return 0
 	end
-	runningSum = 0
 	stdDev = 0
 	average = calcTotal(numArray) / numArray.length().to_f()
 	numArray.each do |item|
-		runningSum += item
 		stdDev += (item - average)**2
 	end
 	
