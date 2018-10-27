@@ -68,12 +68,11 @@ def printArray(array)
 	print "]\n"
 end
 
-size = getDataSize(1, 20)
-gen_nums = createArray(size)
+gen_nums = createArray(getDataSize(1, 20))
 
-PATH = "Output.txt"
-writeFile(gen_nums, PATH)
-read_nums = readFile(PATH)
+$PATH = "Output.txt"
+writeFile(gen_nums, $PATH)
+read_nums = readFile($PATH)
 compare(gen_nums, read_nums)
 
 puts
