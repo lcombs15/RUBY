@@ -16,7 +16,7 @@ end
 # Randomly generate # sleep cycles [2, 5]
 sleep_cycles = rand(2..5)
 
-puts "Number of iterations that will occur: #{sleep_cycles}"
+puts "\nNumber of iterations that will occur: #{sleep_cycles}"
 
 # Estimate time elapsed
 estimated_time = sleep_cycles * sleep_seconds
