@@ -26,26 +26,53 @@ def getLogFile()
 end
 
 def loginReport(num_logins)
-	first_line = nil
+	fields = nil
 	count = 0
 	logins_field_index = -1
 	last_login_field_index = -1
+	ip_list_start_index = -1
+	users = Array.new()
 	getLogFile().each_line do |line|
-		if (first_line == nil) then
-			first_line = line
-			fields =  first_line.split(",")
+		line.delete!("\n")
+		if (fields == nil) then
+			fields =  line.split(",")
 			logins_field_index = fields.index("Total Logins")
-			last_login_field_index = fields.index("Last Login");
+			last_login_field_index = fields.index("Last Login")
+			ip_list_start_index = fields.length - 1
 		else
 			entries = line.split(",")
+
+			if (entries == nil)
+				puts line
+			end
+
 			user_logins = entries[logins_field_index].to_i()
 			user_last_login = Date.strptime(entries[last_login_field_index], '%m/%d/%Y')
 			if (user_logins > num_logins &&  user_last_login >= REPORT_ON_OR_AFTER) then
-				count = count + 1
+				entries.insert(ip_list_start_index, entries[ip_list_start_index].split(";").length)
+				users.push(entries)
 			end
 		end
 	end
-	puts count
+
+	report = File.new("Report.csv", 'w')
+
+	fields.insert(ip_list_start_index, "Num IPs")
+	header = ""
+	fields.each do |col|
+		header = header + col + ","
+	end
+
+	report.puts(header)
+
+	users.each do |user|
+		line = ""
+		user.each do |entrie|
+			line = line + entrie.to_s() + ","
+		end
+		report.puts(line)
+	end
+	report.close()
 end
 
 # Determine options from command line
@@ -74,3 +101,4 @@ def main()
 end
 
 main()
+puts "Done"
